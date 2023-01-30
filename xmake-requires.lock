@@ -1,0 +1,47 @@
+{
+    __meta__ = {
+        version = "1.0"
+    },
+    ["windows|x64"] = {
+        ["cmake#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "846377ed776dd579655c4cd00e211d8dc4462315",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "3.24.2"
+        },
+        ["commonlibsse-ng#20cfb5c0"] = {
+            repo = {
+                branch = "master",
+                commit = "d56ac686509683336990d913178f12d44e8c0e0d",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "v3.6.0"
+        },
+        ["fmt#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "846377ed776dd579655c4cd00e211d8dc4462315",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "9.1.0"
+        },
+        ["rapidcsv#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "846377ed776dd579655c4cd00e211d8dc4462315",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "8.50"
+        },
+        ["spdlog#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "d56ac686509683336990d913178f12d44e8c0e0d",
+                url = "https://github.com/xmake-io/xmake-repo.git"
+            },
+            version = "v1.11.0"
+        }
+    }
+}
