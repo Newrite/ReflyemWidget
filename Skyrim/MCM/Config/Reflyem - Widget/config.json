@@ -1,0 +1,159 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Exit-9B/MCM-Helper/main/docs/config.schema.json",
+  "modName": "Reflyem - Widget",
+  "displayName": "Reflyem Widget",
+  "minMcmVersion": 13,
+  "cursorFillMode": "leftToRight",
+  "content": [
+    {
+      "text": "Main",
+      "type": "header"
+    },
+    {
+      "type": "empty"
+    },
+    {
+      "id": "fPosRegenHealthX:Main",
+      "text": "Regeneration health X Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosRegenHealthY:Main",
+      "text": "Regeneration health Y Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1920.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosRegenStaminaX:Main",
+      "text": "Regeneration stamina X Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosRegenStaminaY:Main",
+      "text": "Regeneration stamina Y Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1920.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosRegenMagickaX:Main",
+      "text": "Regeneration magicka X Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosRegenMagickaY:Main",
+      "text": "Regeneration magicka Y Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1920.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosValueHealthX:Main",
+      "text": "Value health X Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosValueHealthY:Main",
+      "text": "Value health Y Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosValueStaminaX:Main",
+      "text": "Value stamina X Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosValueStaminaY:Main",
+      "text": "Value stamina Y Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosValueMagickaX:Main",
+      "text": "Value magicka X Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fPosValueMagickaY:Main",
+      "text": "Value magicka Y Position",
+      "type": "slider",
+      "valueOptions": {
+        "min": 0.0,
+        "max": 1080.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    },
+    {
+      "id": "fScaleWidget:Main",
+      "text": "Scale widget",
+      "type": "slider",
+      "valueOptions": {
+        "min": 1.0,
+        "max": 200.0,
+        "step": 1.0,
+        "sourceType": "ModSettingFloat"
+      }
+    }
+  ]
+}
