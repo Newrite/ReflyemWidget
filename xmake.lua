@@ -43,7 +43,7 @@ target("ReflyemWidget")
 
     add_files("/src/**.cpp")
     -- add_files("src/**.ixx", "src/plugin/**.ixx")
-    add_headerfiles("/include/**.hpp")
+    add_headerfiles("/include/**.hpp", "/src/**.hpp")
     set_pcxxheader("/include/pch.h")
     add_includedirs("/include")
 

@@ -47,6 +47,7 @@ auto initialize_messaging() -> void {
           Settings::get_singleton().load();
           ReflyemWidget::register_();
           MenuHandler::register_();
+          ReflyemWidget::show();
           logger::info("Get data loaded message"sv);
           break;
         }
@@ -60,6 +61,7 @@ auto initialize_messaging() -> void {
         case SKSE::MessagingInterface::kPreLoadGame: // Player selected a game to load, but it
         // hasn't loaded yet. Data will be the name of
         // the loaded save.
+          break;
         case SKSE::MessagingInterface::kPostLoadGame: // Player's selected save game has finished
         {
           // loading. Data will be a boolean indicating
