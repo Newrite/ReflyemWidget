@@ -16,15 +16,23 @@ auto MenuHandler::register_() -> void {
 auto MenuHandler::ProcessEvent(const RE::MenuOpenCloseEvent* event,
                                RE::BSTEventSource<RE::MenuOpenCloseEvent>*)
     -> RE::BSEventNotifyControl {
+
   if (event) {
+    logger::debug("Menu: {}  is {}", event->menuName, event->opening ? "open" : "close");
+    if (event->menuName == RE::RaceSexMenu::MENU_NAME) {
+      event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
+    }
+    if (event->menuName == RE::LoadingMenu::MENU_NAME) {
+      event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
+    }
     if (event->menuName == RE::JournalMenu::MENU_NAME) {
       Settings::get_singleton().load();
       event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
     }
     if (event->menuName == RE::MapMenu::MENU_NAME) {
-      event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
+      event->opening ? ReflyemWidget::toggle_visibility(false) : ReflyemWidget::toggle_visibility(true);
     }
-    if (event->menuName == RE::CraftingMenu::MENU_NAME) {
+    if (event->menuName == RE::TweenMenu::MENU_NAME) {
       event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
     }
     if (event->menuName == RE::MagicMenu::MENU_NAME) {
@@ -33,24 +41,10 @@ auto MenuHandler::ProcessEvent(const RE::MenuOpenCloseEvent* event,
     if (event->menuName == RE::InventoryMenu::MENU_NAME) {
       event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
     }
-    if (event->menuName == RE::BookMenu::MENU_NAME) {
-      event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
-    }
-    if (event->menuName == RE::BarterMenu::MENU_NAME) {
-      event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
-    }
-    if (event->menuName == RE::FavoritesMenu::MENU_NAME) {
-      event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
-    }
-    if (event->menuName == RE::StatsMenu::MENU_NAME) {
-      event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
-    }
-    if (event->menuName == RE::MainMenu::MENU_NAME) {
-      event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
-    }
-    if (event->menuName == RE::TweenMenu::MENU_NAME) {
+    if (event->menuName == RE::FaderMenu::MENU_NAME) {
       event->opening ? ReflyemWidget::hide() : ReflyemWidget::show();
     }
   }
+  logger::debug("Menu event continue");
   return RE::BSEventNotifyControl::kContinue;
 }

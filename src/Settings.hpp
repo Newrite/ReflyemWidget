@@ -66,22 +66,23 @@ public:
     constexpr auto path_to_ini         = L"Data/MCM/Settings/Reflyem - Widget.ini";
     constexpr auto path_to_ini_default = L"Data/MCM/Config/Reflyem - Widget/settings.ini";
 
-    constexpr auto section = L"Main";
-    constexpr auto f_pos_regen_health_x = L"fPosRegenHealthX";
-    constexpr auto f_pos_regen_health_y = L"fPosRegenHealthY";
+    constexpr auto section               = L"Main";
+    constexpr auto f_pos_regen_health_x  = L"fPosRegenHealthX";
+    constexpr auto f_pos_regen_health_y  = L"fPosRegenHealthY";
     constexpr auto f_pos_regen_stamina_x = L"fPosRegenStaminaX";
     constexpr auto f_pos_regen_stamina_y = L"fPosRegenStaminaY";
     constexpr auto f_pos_regen_magicka_x = L"fPosRegenMagickaX";
     constexpr auto f_pos_regen_magicka_y = L"fPosRegenMagickaY";
-    constexpr auto f_pos_value_health_x = L"fPosValueHealthX";
-    constexpr auto f_pos_value_health_y = L"fPosValueHealthY";
+    constexpr auto f_pos_value_health_x  = L"fPosValueHealthX";
+    constexpr auto f_pos_value_health_y  = L"fPosValueHealthY";
     constexpr auto f_pos_value_stamina_x = L"fPosValueStaminaX";
     constexpr auto f_pos_value_stamina_y = L"fPosValueStaminaY";
     constexpr auto f_pos_value_magicka_x = L"fPosValueMagickaX";
     constexpr auto f_pos_value_magicka_y = L"fPosValueMagickaY";
-    constexpr auto f_scale_widget = L"fScaleWidget";
+    constexpr auto f_scale_widget        = L"fScaleWidget";
 
-    const auto read_double = [this](const CSimpleIni& ini, const wchar_t* key, double& value) -> void {
+    const auto read_double = [this](const CSimpleIni& ini, const wchar_t* key,
+                                    double& value) -> void {
       if (ini.GetValue(section, key)) {
         value = ini.GetDoubleValue(section, key);
       }
@@ -92,24 +93,23 @@ public:
 
       read_double(ini, f_pos_regen_health_x, pos_regen_health_x_);
       read_double(ini, f_pos_regen_health_y, pos_regen_health_y_);
-      
+
       read_double(ini, f_pos_regen_stamina_x, pos_regen_stamina_x_);
       read_double(ini, f_pos_regen_stamina_y, pos_regen_stamina_y_);
-      
+
       read_double(ini, f_pos_regen_magicka_x, pos_regen_magicka_x_);
       read_double(ini, f_pos_regen_magicka_y, pos_regen_magicka_y_);
 
       read_double(ini, f_pos_value_health_x, pos_value_health_x_);
       read_double(ini, f_pos_value_health_y, pos_value_health_y_);
-      
+
       read_double(ini, f_pos_value_stamina_x, pos_value_stamina_x_);
       read_double(ini, f_pos_value_stamina_y, pos_value_stamina_y_);
-      
+
       read_double(ini, f_pos_value_magicka_x, pos_value_magicka_x_);
       read_double(ini, f_pos_value_magicka_y, pos_value_magicka_y_);
-      
+
       read_double(ini, f_scale_widget, scale_);
-      
     };
 
     CSimpleIni ini;
@@ -117,6 +117,5 @@ public:
     ini.SetUnicode();
     read_settings(ini, path_to_ini_default);
     read_settings(ini, path_to_ini);
-
   }
 };

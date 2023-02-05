@@ -1,6 +1,6 @@
-#include "Widget.hpp"
 #include "MenuHandler.hpp"
 #include "Settings.hpp"
+#include "Widget.hpp"
 
 auto init_logger() -> void {
   // ReSharper disable once CppLocalVariableMayBeConst
@@ -28,7 +28,7 @@ auto init_logger() -> void {
 auto initialize_messaging() -> void {
   // ReSharper disable once CppParameterMayBeConstPtrOrRef
   if (!SKSE::GetMessagingInterface()->RegisterListener([](SKSE::MessagingInterface::Message*
-      message) {
+                                                              message) {
         switch (message->type) {
         // Skyrim lifecycle events.
         case SKSE::MessagingInterface::kPostLoad: // Called after all plugins have finished running
@@ -40,7 +40,7 @@ auto initialize_messaging() -> void {
         case SKSE::MessagingInterface::kInputLoaded: // Called when all game data has been found.
           break;
         case SKSE::MessagingInterface::kDataLoaded: // All ESM/ESL/ESP plugins have loaded, main
-          // menu is now active.
+                                                    // menu is now active.
         {
 
           // It is now safe to access form data.
@@ -59,8 +59,8 @@ auto initialize_messaging() -> void {
           break;
         }
         case SKSE::MessagingInterface::kPreLoadGame: // Player selected a game to load, but it
-        // hasn't loaded yet. Data will be the name of
-        // the loaded save.
+                                                     // hasn't loaded yet. Data will be the name of
+                                                     // the loaded save.
           break;
         case SKSE::MessagingInterface::kPostLoadGame: // Player's selected save game has finished
         {
