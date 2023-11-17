@@ -1,19 +1,19 @@
 // ReSharper disable CppInconsistentNaming
 #pragma once
 
+#undef UNICODE
+
 #include <RE/Skyrim.h>
 #include <SKSE/SKSE.h>
-
-#include <spdlog/sinks/basic_file_sink.h>
-#include <spdlog/sinks/msvc_sink.h>
+#include <Windows.h>
 
 namespace WinAPI = SKSE::WinAPI;
 namespace logger = SKSE::log;
-namespace fs     = std::filesystem;
+namespace stl = SKSE::stl;
 using namespace std::literals;
 
 #define RELOCATION_OFFSET(SE, AE) REL::VariantOffset(SE, AE, 0).offset()
-
-namespace stl {
-using namespace SKSE::stl;
-}
+#define let const auto
+#define letr const auto&
+#define letp const auto*
+#define let_expr constexpr auto

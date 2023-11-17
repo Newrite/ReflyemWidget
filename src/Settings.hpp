@@ -3,7 +3,7 @@
 #include "SimpleIni.hpp"
 #include <latch>
 
-struct Settings {
+struct Settings final {
 private:
   Settings() = default;
 
@@ -49,15 +49,7 @@ public:
   [[nodiscard]] auto pos_value_magicka_y() const -> double { return pos_value_magicka_y_; }
 
   [[nodiscard]] static auto get_singleton() noexcept -> Settings& {
-    static Settings         instance;
-    static std::atomic_bool initialized;
-    static std::latch       latch{1};
-
-    if (!initialized.exchange(true)) {
-      logger::info("Settings created");
-      latch.count_down();
-    }
-    latch.wait();
+    static Settings instance;
     return instance;
   }
 
@@ -90,6 +82,9 @@ public:
 
     const auto read_settings = [this, read_double](CSimpleIni& ini, const wchar_t* path) -> void {
       ini.LoadFile(path);
+      if (ini.IsEmpty()) {
+        return;
+      }
 
       read_double(ini, f_pos_regen_health_x, pos_regen_health_x_);
       read_double(ini, f_pos_regen_health_y, pos_regen_health_y_);

@@ -1,7 +1,6 @@
 ﻿#pragma once
 
-struct MenuHandler final : public RE::BSTEventSink<RE::MenuOpenCloseEvent> {
-public:
+struct MenuHandler final : RE::BSTEventSink<RE::MenuOpenCloseEvent> {
   [[nodiscard]] static auto get_singleton() noexcept -> MenuHandler*;
   static auto               register_() -> void;
 

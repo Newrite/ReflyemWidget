@@ -2,7 +2,7 @@
 #include "Settings.hpp"
 
 ReflyemWidget::ReflyemWidget() {
-  const auto scale_form_manager = RE::BSScaleformManager::GetSingleton();
+  // const auto scale_form_manager = RE::BSScaleformManager::GetSingleton();
 
   logger::info("Construct menu");
 
@@ -12,14 +12,23 @@ ReflyemWidget::ReflyemWidget() {
   menuFlags.set(RE::UI_MENU_FLAGS::kAlwaysOpen);
   menuFlags.set(RE::UI_MENU_FLAGS::kRequiresUpdate);
   menuFlags.set(RE::UI_MENU_FLAGS::kAllowSaving);
+  // menuFlags.set(RE::UI_MENU_FLAGS::kCustomRendering);
+  // menuFlags.set(RE::UI_MENU_FLAGS::kAssignCursorToRenderer);
 
   if (uiMovie) {
     uiMovie->SetMouseCursorCount(0);
+    uiMovie->SetVisible(true);
   }
 
-  scale_form_manager->LoadMovieEx(this, MENU_PATH, [](RE::GFxMovieDef* def) -> void {
-    def->SetState(RE::GFxState::StateType::kLog, RE::make_gptr<ReflyemLogger>().get());
-  });
+  // scale_form_manager->LoadMovieEx(this, MENU_PATH, [](RE::GFxMovieDef* def) -> void {
+  //   def->SetState(RE::GFxState::StateType::kLog, RE::make_gptr<ReflyemLogger>().get());
+  // });
+
+  if (auto scaleform = RE::BSScaleformManager::GetSingleton()) {
+    scaleform->LoadMovie(this, this->uiMovie, MENU_PATH);
+  }
+
+  logger::info("Finish construct menu");
 }
 
 auto ReflyemWidget::register_() -> void {
@@ -42,6 +51,13 @@ auto ReflyemWidget::hide() -> void {
     logger::debug("Hide menu");
     message_queue->AddMessage(MENU_NAME, RE::UI_MESSAGE_TYPE::kHide, nullptr);
   }
+}
+
+auto ReflyemWidget::get_actor_value_max(RE::Actor* actor, const RE::ActorValue av) -> float
+{
+  if (!actor) { return 0.f; }
+  return actor->GetActorValueModifier(RE::ACTOR_VALUE_MODIFIER::kTemporary, av) +
+         actor->GetPermanentActorValue(av);
 }
 
 auto ReflyemWidget::actor_value_regeneration_value(const RE::ActorValue av,
@@ -109,16 +125,16 @@ auto ReflyemWidget::actor_value_regeneration_value(const RE::ActorValue av,
   const auto rate      = player->GetActorValue(av_rate);
   const auto mult_rate = player->GetActorValue(av_rate_mult);
 
-  if (rate <= 0.f || mult_rate <= -100.f) {
+  if (rate <= 0.f || mult_rate <= 0.f) {
     regeneration = 0.f;
   } else {
-    const auto max_value = player->GetPermanentActorValue(av);
-    const auto percent   = rate * (1.f + (mult_rate / 100.f));
-    regeneration         = (max_value / 100.f) * percent;
+    const auto max_value = get_actor_value_max(player, av);
+    regeneration         = (max_value * (rate * 0.01f)) * (mult_rate * 0.01f);
   }
 
   return restore_value_counter + regeneration;
 }
+
 
 auto ReflyemWidget::update() -> void {
 
@@ -157,15 +173,15 @@ auto ReflyemWidget::update() -> void {
 
   const auto value_health_string =
       fmt::format("{} / {}"sv, static_cast<int32_t>(player->GetActorValue(RE::ActorValue::kHealth)),
-                  static_cast<int32_t>(player->GetPermanentActorValue(RE::ActorValue::kHealth)));
+                  static_cast<int32_t>(get_actor_value_max(player, RE::ActorValue::kHealth)));
 
   const auto value_stamina_string = fmt::format(
       "{} / {}"sv, static_cast<int32_t>(player->GetActorValue(RE::ActorValue::kStamina)),
-      static_cast<int32_t>(player->GetPermanentActorValue(RE::ActorValue::kStamina)));
+      static_cast<int32_t>(get_actor_value_max(player, RE::ActorValue::kStamina)));
 
   const auto value_magicka_string = fmt::format(
       "{} / {}"sv, static_cast<int32_t>(player->GetActorValue(RE::ActorValue::kMagicka)),
-      static_cast<int32_t>(player->GetPermanentActorValue(RE::ActorValue::kMagicka)));
+      static_cast<int32_t>(get_actor_value_max(player, RE::ActorValue::kMagicka)));
 
   logger::debug("HR: {} SR: {} MR: {} | VH: {} VS: {} VM: {}"sv, heath_regen_string,
                 stamina_regen_string, magicka_regen_string, value_health_string,
